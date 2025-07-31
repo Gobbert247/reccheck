@@ -1,0 +1,42 @@
+# OS-specific junk
+.DS_Store
+Thumbs.db
+
+# User folders (customise to your setup)
+AppData/
+Downloads/
+Saved Games/
+Documents/
+
+# Log files and temp data
+*.log
+*.dat
+*.tmp
+*.swp
+
+# Dependency and build artifacts
+node_modules/
+.next/
+out/
+dist/
+coverage/
+.env.local
+.env.*.local
+.env
+
+# Optional IDE configs
+.vscode/
+.idea/
+
+# Git & project metadata
+.git/
+reccheck-alpha-2/
+
+# Platform-specific SWC binaries (GitHub push blocker)
+**/next-swc.*.node
+
+# Archive and installer files
+*.zip
+*.msi
+*.nupkg
+*.exe

@@ -1,0 +1,19 @@
+# Force consistent line endings
+* text=auto
+
+# Ensure shell and scripts use LF
+*.sh text eol=lf
+*.js text eol=lf
+*.ts text eol=lf
+*.jsx text eol=lf
+*.tsx text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Treat binary files properly
+*.png binary
+*.jpg binary
+*.gif binary
+*.ico binary
+*.node binary
