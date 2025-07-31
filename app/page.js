@@ -44,19 +44,16 @@ export default function Home() {
               title: 'Drug Interaction Checker',
               desc: 'Instantly cross-check combinations for potential risk.',
               alt: 'Drug test kit',
-              img: '/images/interaction.png',
             },
             {
               title: 'Regional Alerts',
               desc: 'Stay updated with local alerts on contaminated or high-risk batches.',
               alt: 'Rainy ambulance view',
-              img: '/images/alert.png',
             },
             {
               title: 'Evidence-Based Info',
               desc: 'Learn from trusted, up-to-date sources tailored for real people.',
               alt: 'Evidence-based info visual',
-              img: '/images/education.png',
             },
           ].map((tile, i) => (
             <div
@@ -64,7 +61,7 @@ export default function Home() {
               className="bg-gray-900 border border-gray-700 rounded-xl overflow-hidden"
             >
               <Image
-                src={tile.img}
+                src="/images/alert.png"
                 width={800}
                 height={400}
                 alt={tile.alt}
