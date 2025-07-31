@@ -1,6 +1,9 @@
 // next.config.js
 const nextConfig = {
-  reactStrictMode: true,
+  // Remove experimental.appDir – no longer needed
+  experimental: {
+    // other valid experimental flags if needed
+  },
 };
 
 module.exports = nextConfig;
