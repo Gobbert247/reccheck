@@ -1,9 +1,4 @@
-// next.config.js
-const nextConfig = {
-  // Remove experimental.appDir – no longer needed
-  experimental: {
-    // other valid experimental flags if needed
-  },
-};
+/** @type {import('next').NextConfig} */
+const nextConfig = {}; // Cleaned up
 
 module.exports = nextConfig;
