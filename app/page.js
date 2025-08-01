@@ -50,16 +50,35 @@ const sections = [
 
 export default function Home() {
   return (
-    <main className="bg-black text-white font-sans">
+    <main className="bg-black text-white font-sans relative overflow-hidden">
+      {/* Background Layers */}
+      <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
+        <Image
+          src="/images/smoke.jpg"
+          alt="Smoke background"
+          layout="fill"
+          objectFit="cover"
+          className="blur-sm"
+        />
+      </div>
+
+      <div
+        className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
+        style={{
+          backgroundImage: "url('/images/noise.svg')",
+          backgroundRepeat: 'repeat',
+          backgroundSize: '300px',
+        }}
+      />
 
       {/* Hero Section */}
-      <section className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 py-24">
+      <section className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 py-24 relative z-10">
         <div className="lg:w-1/2 text-center lg:text-left space-y-8">
-          <h1 className="text-6xl font-extrabold leading-tight tracking-tight">
-            RecCheck: Smarter Safety
+          <h1 className="text-6xl font-extrabold leading-tight tracking-tight mb-6">
+            RecCheck is Live
           </h1>
-          <p className="text-lg text-gray-400 max-w-xl">
-            Plan, simulate, and manage recreational substance use with clarity and care. Built by people who get it.
+          <p className="text-xl text-gray-400 max-w-xl mx-auto lg:mx-0">
+            Smart safety tools for people who use drugs. Built without judgement.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <Link
@@ -79,11 +98,11 @@ export default function Home() {
 
         <div className="lg:w-1/2 mt-12 lg:mt-0 flex justify-center">
           <Image
-            src="/images/generated.png"
-            alt="RecCheck Simulator Preview"
+            src="/images/phone-mockup.png"
+            alt="App preview"
             width={400}
             height={800}
-            className="rounded-2xl shadow-[0_0_40px_rgba(255,255,255,0.1)] object-cover"
+            className="rounded-2xl shadow-2xl object-cover"
             priority
           />
         </div>
@@ -116,7 +135,7 @@ export default function Home() {
       </div>
 
       {/* Disclaimer */}
-      <section className="bg-black text-white px-6 py-20 border-t border-white/10">
+      <section className="bg-black text-white px-6 py-20 border-t border-white/10 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-semibold mb-4">Educational Disclaimer</h2>
           <p className="mb-2 text-gray-400">
@@ -129,7 +148,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black text-center text-sm text-gray-600 py-8 border-t border-white/10">
+      <footer className="bg-black text-center text-sm text-gray-600 py-8 border-t border-white/10 relative z-10">
         <p>© 2025 RecCheck. Built with care, not judgement. Be safe out there.</p>
       </footer>
     </main>
