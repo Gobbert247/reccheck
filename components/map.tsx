@@ -1,17 +1,21 @@
 'use client';
 
-import Image from 'next/image';
-import dynamic from 'next/dynamic';
 import { useState } from 'react';
-import { alerts } from '@/data/alerts';
+import Image from 'next/image';
+import Link from 'next/link';
+import dynamic from 'next/dynamic';
 
 const Map = dynamic(() => import('@/components/Map'), { ssr: false });
 
+import { alerts } from '@/data/alerts';
+
 export default function AlertsPage() {
   const [selectedRegion, setSelectedRegion] = useState('All');
+
   const filteredAlerts = selectedRegion === 'All'
     ? alerts
     : alerts.filter(alert => alert.region.includes(selectedRegion));
+
   const regions = ['All', 'NSW', 'VIC', 'QLD'];
 
   return (
@@ -28,9 +32,12 @@ export default function AlertsPage() {
         />
       </div>
 
-      {/* 🔲 Content */}
-      <div className="relative z-10">
+      <div className="relative z-10 max-w-5xl mx-auto">
         <h1 className="text-5xl font-bold mb-12 text-center">Regional Alerts</h1>
+
+        <p className="text-center text-gray-400 max-w-2xl mx-auto mb-8">
+          Live alerts of contaminated or unexpected substances reported through verified health networks and community reports. Stay aware. Stay safer.
+        </p>
 
         <div className="flex justify-center gap-4 mb-10 flex-wrap">
           {regions.map(region => (
@@ -52,6 +59,26 @@ export default function AlertsPage() {
           title: alert.title,
           position: alert.coordinates,
         }))} />
+
+        <div className="grid md:grid-cols-2 gap-10 mt-12">
+          {filteredAlerts.map((alert, idx) => (
+            <Link href={alert.href} key={idx}>
+              <div className="group relative rounded-xl overflow-hidden border border-white/10 hover:border-white/20 shadow-xl cursor-pointer">
+                <Image
+                  src={alert.image}
+                  alt={alert.title}
+                  width={800}
+                  height={400}
+                  className="object-cover w-full h-64 group-hover:scale-105 transition-transform duration-300 ease-out"
+                />
+                <div className="p-6 bg-black/80 backdrop-blur-md absolute bottom-0 w-full">
+                  <h2 className="text-xl font-semibold mb-1 text-white">{alert.title}</h2>
+                  <p className="text-sm text-gray-400">{alert.region} • {alert.date} • Source: {alert.source}</p>
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </main>
   );
