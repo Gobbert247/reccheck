@@ -46,13 +46,7 @@ export default function AlertsPage() {
           ))}
         </div>
 
-        {/* 🚫 Map temporarily removed to fix build issues */}
-        {/* <Map markers={filteredAlerts.map(alert => ({
-              title: alert.title,
-              position: alert.coordinates,
-        }))} /> */}
-
-        {/* 📋 List view as fallback */}
+        {/* 📋 List view of alerts */}
         <div className="space-y-4">
           {filteredAlerts.map(alert => (
             <div
