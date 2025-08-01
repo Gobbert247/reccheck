@@ -6,14 +6,15 @@ import { alerts } from '@/data/alerts';
 
 export default function AlertsPage() {
   const [selectedRegion, setSelectedRegion] = useState('All');
+
   const filteredAlerts = selectedRegion === 'All'
     ? alerts
     : alerts.filter(alert => alert.region.includes(selectedRegion));
+
   const regions = ['All', 'NSW', 'VIC', 'QLD'];
 
   return (
     <main className="relative bg-black text-white min-h-screen px-6 py-20 overflow-hidden">
-
       {/* 🔥 Smoky Background Layer */}
       <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
         <Image
@@ -45,13 +46,13 @@ export default function AlertsPage() {
           ))}
         </div>
 
-        {/* 🛑 Map temporarily removed */}
+        {/* 🚫 Map temporarily removed to fix build issues */}
         {/* <Map markers={filteredAlerts.map(alert => ({
               title: alert.title,
               position: alert.coordinates,
         }))} /> */}
 
-        {/* 📋 Optional: Display alerts in a list instead (for now) */}
+        {/* 📋 List view as fallback */}
         <div className="space-y-4">
           {filteredAlerts.map(alert => (
             <div
