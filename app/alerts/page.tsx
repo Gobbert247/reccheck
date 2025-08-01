@@ -1,11 +1,8 @@
 'use client';
 
 import Image from 'next/image';
-import dynamic from 'next/dynamic';
 import { useState } from 'react';
 import { alerts } from '@/data/alerts';
-
-const Map = dynamic(() => import('@/components/Map'), { ssr: false });
 
 export default function AlertsPage() {
   const [selectedRegion, setSelectedRegion] = useState('All');
@@ -48,10 +45,24 @@ export default function AlertsPage() {
           ))}
         </div>
 
-        <Map markers={filteredAlerts.map(alert => ({
-          title: alert.title,
-          position: alert.coordinates,
-        }))} />
+        {/* 🛑 Map temporarily removed */}
+        {/* <Map markers={filteredAlerts.map(alert => ({
+              title: alert.title,
+              position: alert.coordinates,
+        }))} /> */}
+
+        {/* 📋 Optional: Display alerts in a list instead (for now) */}
+        <div className="space-y-4">
+          {filteredAlerts.map(alert => (
+            <div
+              key={alert.title}
+              className="bg-white/5 border border-white/10 p-4 rounded-xl"
+            >
+              <h2 className="text-xl font-semibold">{alert.title}</h2>
+              <p className="text-sm text-white/70">{alert.region.join(', ')}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </main>
   );
