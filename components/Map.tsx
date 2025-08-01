@@ -15,9 +15,15 @@ type MapProps = {
 
 const Map: React.FC<MapProps> = ({ markers }) => {
   return (
-    <div>
-      Map goes here.
-      <pre>{JSON.stringify(markers, null, 2)}</pre>
+    <div className="bg-gray-800 text-white p-4 rounded-xl">
+      <p>Map will be rendered here.</p>
+      <ul className="text-sm mt-2">
+        {markers.map((marker, index) => (
+          <li key={index}>
+            📍 {marker.title} — Lat: {marker.position.lat}, Lng: {marker.position.lng}
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
