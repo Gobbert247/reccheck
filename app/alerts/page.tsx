@@ -54,7 +54,6 @@ export default function AlertsPage() {
               className="bg-white/5 border border-white/10 p-4 rounded-xl"
             >
               <h2 className="text-xl font-semibold">{alert.title}</h2>
-              <p className="text-sm text-white/70">{alert.region.join(', ')}</p>
             </div>
           ))}
         </div>
