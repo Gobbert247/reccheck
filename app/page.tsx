@@ -1,5 +1,6 @@
 'use client';
 
+import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -50,107 +51,116 @@ const sections = [
 
 export default function Home() {
   return (
-    <main className="bg-black text-white font-sans relative overflow-hidden">
-
-      {/* 🌫️ Static Smoke Overlay */}
-      <div className="fixed inset-0 z-0 pointer-events-none opacity-30">
-        <Image
-          src="/images/smoke1.png"
-          alt="Static smoke overlay"
-          fill
-          className="object-cover"
-          priority
+    <>
+      <Head>
+        <title>RecCheck – Harm Reduction Without Judgement</title>
+        <meta
+          name="description"
+          content="RecCheck is a harm minimisation tool focused on drug safety, interaction checking, and education."
         />
-      </div>
+      </Head>
 
-      {/* 🔲 Noise Texture */}
-      <div
-        className="fixed inset-0 z-10 pointer-events-none"
-        style={{
-          backgroundImage: "url('/images/noise.svg')",
-          backgroundRepeat: 'repeat',
-          backgroundSize: '300px',
-          opacity: 0.04,
-        }}
-      />
-
-      {/* 🧠 Hero Section */}
-      <section className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 py-24 relative z-20">
-        <div className="lg:w-1/2 text-center lg:text-left space-y-8">
+      <main className="bg-black text-white font-sans relative overflow-hidden">
+        {/* 🌫️ Static Smoke Overlay */}
+        <div className="fixed inset-0 z-0 pointer-events-none opacity-30">
           <Image
-            src="/images/logo4.png"
-            alt="RecCheck Logo"
-            width={360}
-            height={140}
-            className="mx-auto lg:mx-0"
+            src="/images/smoke1.png"
+            alt="Static smoke overlay"
+            fill
+            className="object-cover"
             priority
           />
-          <p className="text-xl text-gray-400 max-w-xl mx-auto lg:mx-0">
-            Drugs aren’t the problem. Misinformation is.
-            RecCheck is a harm minimisation tool. We don’t promote drug use. We promote safety, education, and informed choices.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-            <Link
-              href="/simulator"
-              className="bg-white text-black font-semibold px-6 py-3 rounded-full hover:bg-gray-200 transition"
-            >
-              Try the Simulator
-            </Link>
-            <Link
-              href="#features"
-              className="border border-white text-white font-semibold px-6 py-3 rounded-full hover:bg-white hover:text-black transition"
-            >
-              View Features
-            </Link>
-          </div>
         </div>
-      </section>
 
-      {/* 🧱 Feature Tiles */}
-      <section id="features" className="relative z-20 px-6 pb-24">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-          {sections.map((section, idx) => (
-            <Link href={section.href} key={idx}>
-              <div
-                className="relative group h-[60vh] rounded-xl overflow-hidden shadow-lg cursor-pointer"
-                style={{
-                  backgroundImage: `url(${section.image})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                }}
+        {/* 🔲 Noise Texture */}
+        <div
+          className="fixed inset-0 z-10 pointer-events-none"
+          style={{
+            backgroundImage: "url('/images/noise.svg')",
+            backgroundRepeat: 'repeat',
+            backgroundSize: '300px',
+            opacity: 0.04,
+          }}
+        />
+
+        {/* 🧠 Hero Section */}
+        <section className="min-h-screen flex flex-col items-center justify-center px-6 py-24 relative z-20">
+          <div className="w-full text-center space-y-8">
+            <Image
+              src="/images/logo4.png"
+              alt="RecCheck Logo"
+              className="mx-auto w-1/2 h-auto"
+              priority
+            />
+
+            <p className="text-xl text-gray-400 max-w-xl mx-auto">
+              Drugs aren’t the problem. Misinformation is.
+              RecCheck is a harm minimisation tool. We don’t promote drug use. We promote safety, education, and informed choices.
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/simulator"
+                className="bg-white text-black font-semibold px-6 py-3 rounded-full hover:bg-gray-200 transition"
               >
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent transition-opacity group-hover:opacity-90" />
-                <div className="relative z-10 p-6 backdrop-blur-sm bg-white/5 rounded-xl border border-white/10 m-4 transition-transform group-hover:scale-[1.03]">
-                  <h2 className="text-3xl font-semibold mb-2 tracking-tight">
-                    {section.title}
-                  </h2>
-                  <p className="text-lg text-gray-300 leading-snug">
-                    {section.desc}
-                  </p>
+                Try the Simulator
+              </Link>
+              <Link
+                href="#features"
+                className="border border-white text-white font-semibold px-6 py-3 rounded-full hover:bg-white hover:text-black transition"
+              >
+                View Features
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* 🧱 Feature Tiles */}
+        <section id="features" className="relative z-20 px-6 pb-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+            {sections.map((section, idx) => (
+              <Link href={section.href} key={idx}>
+                <div
+                  className="relative group h-[60vh] rounded-xl overflow-hidden shadow-lg cursor-pointer"
+                  style={{
+                    backgroundImage: `url(${section.image})`,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent transition-opacity group-hover:opacity-90" />
+                  <div className="relative z-10 p-6 backdrop-blur-sm bg-white/5 rounded-xl border border-white/10 m-4 transition-transform group-hover:scale-[1.03]">
+                    <h2 className="text-3xl font-semibold mb-2 tracking-tight">
+                      {section.title}
+                    </h2>
+                    <p className="text-lg text-gray-300 leading-snug">
+                      {section.desc}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
+              </Link>
+            ))}
+          </div>
+        </section>
 
-      {/* 📘 Disclaimer */}
-      <section className="bg-black text-white px-6 py-20 border-t border-white/10 relative z-20">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl font-semibold mb-4">Educational Disclaimer</h2>
-          <p className="mb-2 text-gray-400">
-            RecCheck is a harm minimisation tool built for <strong>educational purposes</strong> only. We do <strong>not</strong> promote or encourage substance use.
-          </p>
-          <p className="text-gray-500">
-            Always consult a licensed medical professional. Nothing on this site constitutes medical advice.
-          </p>
-        </div>
-      </section>
+        {/* 📘 Disclaimer */}
+        <section className="bg-black text-white px-6 py-20 border-t border-white/10 relative z-20">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl font-semibold mb-4">Educational Disclaimer</h2>
+            <p className="mb-2 text-gray-400">
+              RecCheck is a harm minimisation tool built for <strong>educational purposes</strong> only. We do <strong>not</strong> promote or encourage substance use.
+            </p>
+            <p className="text-gray-500">
+              Always consult a licensed medical professional. Nothing on this site constitutes medical advice.
+            </p>
+          </div>
+        </section>
 
-      {/* 🔚 Footer */}
-      <footer className="bg-black text-center text-sm text-gray-600 py-8 border-t border-white/10 relative z-20">
-        <p>© 2025 RecCheck. Built with care, not judgement. Be safe out there.</p>
-      </footer>
-    </main>
+        {/* 🔚 Footer */}
+        <footer className="bg-black text-center text-sm text-gray-600 py-8 border-t border-white/10 relative z-20">
+          <p>© 2025 RecCheck. Built with care, not judgement. Be safe out there.</p>
+        </footer>
+      </main>
+    </>
   );
 }
