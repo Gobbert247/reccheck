@@ -52,31 +52,30 @@ export default function Home() {
   return (
     <main className="bg-black text-white font-sans relative overflow-hidden">
 
-      {/* 🌫️ Smokey Background Overlay */}
-      <div className="fixed top-0 left-0 w-full h-full -z-20 pointer-events-none">
+      {/* 🌫️ Static Smoke Overlay */}
+      <div className="fixed inset-0 z-0 pointer-events-none opacity-30">
         <Image
-          src="/images/smokeybg.png"
-          alt="Smokey texture"
+          src="/images/smoke1.png"
+          alt="Static smoke overlay"
           fill
-          className="object-cover blur-sm grayscale opacity-20"
+          className="object-cover"
           priority
         />
       </div>
 
       {/* 🔲 Noise Texture */}
       <div
-        className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"
+        className="fixed inset-0 z-10 pointer-events-none"
         style={{
           backgroundImage: "url('/images/noise.svg')",
           backgroundRepeat: 'repeat',
           backgroundSize: '300px',
-          opacity: 0.03,
+          opacity: 0.04,
         }}
       />
 
       {/* 🧠 Hero Section */}
-      <section className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 py-24 relative z-10">
-        {/* 🖼️ Logo and Tagline */}
+      <section className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 py-24 relative z-20">
         <div className="lg:w-1/2 text-center lg:text-left space-y-8">
           <Image
             src="/images/logo2.png"
@@ -107,7 +106,7 @@ export default function Home() {
       </section>
 
       {/* 🧱 Feature Tiles */}
-      <section id="features" className="relative z-10 px-6 pb-24">
+      <section id="features" className="relative z-20 px-6 pb-24">
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
           {sections.map((section, idx) => (
             <Link href={section.href} key={idx}>
@@ -117,7 +116,6 @@ export default function Home() {
                   backgroundImage: `url(${section.image})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
-                  filter: section.title === 'Substance Safety' ? 'brightness(1.2)' : 'none',
                 }}
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent transition-opacity group-hover:opacity-90" />
@@ -136,7 +134,7 @@ export default function Home() {
       </section>
 
       {/* 📘 Disclaimer */}
-      <section className="bg-black text-white px-6 py-20 border-t border-white/10 relative z-10">
+      <section className="bg-black text-white px-6 py-20 border-t border-white/10 relative z-20">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-semibold mb-4">Educational Disclaimer</h2>
           <p className="mb-2 text-gray-400">
@@ -149,7 +147,7 @@ export default function Home() {
       </section>
 
       {/* 🔚 Footer */}
-      <footer className="bg-black text-center text-sm text-gray-600 py-8 border-t border-white/10 relative z-10">
+      <footer className="bg-black text-center text-sm text-gray-600 py-8 border-t border-white/10 relative z-20">
         <p>© 2025 RecCheck. Built with care, not judgement. Be safe out there.</p>
       </footer>
     </main>
