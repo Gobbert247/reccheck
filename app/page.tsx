@@ -86,7 +86,8 @@ export default function Home() {
             priority
           />
           <p className="text-xl text-gray-400 max-w-xl mx-auto lg:mx-0">
-            Smart safety tools for people who use drugs. Built without judgement.
+            Drugs aren’t the problem. Misinformation is.
+            RecCheck is a harm minimisation tool. We don’t promote drug use. We promote safety, education, and informed choices.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <Link
