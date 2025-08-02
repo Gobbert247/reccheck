@@ -3,7 +3,8 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import './stylesheet.css';
+import '@/styles/styles.css'; // assuming you placed styles.css under /app/styles or /styles
+
 
 
 const sections = [
