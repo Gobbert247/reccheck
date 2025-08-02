@@ -19,13 +19,13 @@ const sections = [
   {
     title: 'Overdose First Aid',
     desc: 'Immediate steps to help someone in trouble.',
-    image: '/images/IMG-20250801-WA0005.jpg',
+    image: '/images/firstaid.png',
     href: '/firstaid',
   },
   {
-    title: 'Psychedelic Safety',
+    title: 'Substance Safety',
     desc: 'Understand safe use, set/setting, and what’s real.',
-    image: '/images/mushrooms.jpg',
+    image: '/images/app.drug.png',
     href: '/psychedelics',
   },
   {
@@ -52,21 +52,20 @@ export default function Home() {
   return (
     <main className="bg-black text-white font-sans relative overflow-hidden">
 
-      {/* 🌫️ Global Background Image */}
-      <div className="fixed top-0 left-0 w-full h-full -z-20">
+      {/* 🌫️ Smoke Background Image */}
+      <div className="absolute inset-0 -z-20">
         <Image
           src="/images/IMG-20250801-WA0009.jpg"
-          alt="Faint ambient background"
-          layout="fill"
-          objectFit="cover"
-          className="opacity-10 blur-sm grayscale"
+          alt="Smoke background"
+          fill
+          className="object-cover opacity-10 blur-sm grayscale"
           priority
         />
       </div>
 
-      {/* 🟫 Noise Overlay */}
+      {/* 📶 Noise Overlay */}
       <div
-        className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"
+        className="absolute inset-0 -z-10 pointer-events-none"
         style={{
           backgroundImage: "url('/images/noise.svg')",
           backgroundRepeat: 'repeat',
