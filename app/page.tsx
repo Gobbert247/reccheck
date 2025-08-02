@@ -94,38 +94,38 @@ export default function Home() {
         />
 
         {/* 🧠 Hero Section */}
-        <section className="min-h-screen flex flex-col items-center justify-center px-6 py-24 relative z-20">
-          <div className="w-full text-center space-y-8">
-            <Image
-              src="/images/logo4.png"
-              alt="RecCheck Logo"
-              width={768}
-              height={768}
-              className="mx-auto w-1/2 h-auto"
-              priority
-            />
+<section className="min-h-screen flex flex-col items-center justify-center px-6 py-24 relative z-20">
+  <div className="w-full text-center space-y-8">
+    <Image
+      src="/images/logo4.png"
+      alt="RecCheck Logo"
+      width={768}
+      height={768}
+      className="mx-auto w-1/2 h-auto !opacity-100 !transition-none"
+      priority
+    />
 
-            <p className="text-xl text-gray-400 max-w-xl mx-auto">
-              Drugs aren’t the problem. Misinformation is.
-              RecCheck is a harm minimisation tool. We don’t promote drug use. We promote safety, education, and informed choices.
-            </p>
+    <p className="text-xl text-gray-400 max-w-xl mx-auto">
+      Drugs aren’t the problem. Misinformation is.
+      RecCheck is a harm minimisation tool. We don’t promote drug use. We promote safety, education, and informed choices.
+    </p>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/simulator"
-                className="bg-white text-black font-semibold px-6 py-3 rounded-full hover:bg-gray-200 transition"
-              >
-                Try the Simulator
-              </Link>
-              <Link
-                href="#features"
-                className="border border-white text-white font-semibold px-6 py-3 rounded-full hover:bg-white hover:text-black transition"
-              >
-                View Features
-              </Link>
-            </div>
-          </div>
-        </section>
+    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+      <Link
+        href="/simulator"
+        className="bg-white text-black font-semibold px-6 py-3 rounded-full hover:bg-gray-200 transition"
+      >
+        Try the Simulator
+      </Link>
+      <Link
+        href="#features"
+        className="border border-white text-white font-semibold px-6 py-3 rounded-full hover:bg-white hover:text-black transition"
+      >
+        View Features
+      </Link>
+    </div>
+  </div>
+</section>
 
         {/* 🧱 Feature Tiles */}
         <section id="features" className="relative z-20 px-6 pb-24">
