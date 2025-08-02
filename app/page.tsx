@@ -7,14 +7,14 @@ const sections = [
   {
     title: 'Drug Interaction Checker',
     desc: 'Instantly cross-check combinations for potential risks.',
-    image: '/images/interactions.jpg', // molecule structure
+    image: '/images/interactions.png', // molecule structure
     href: '/checker',
   },
   {
     title: 'Regional Alerts',
     desc: 'See contaminated or dangerous batches near you.',
     image: '/images/alert.png',
-    href: '/alerts',
+    href: '/alerts',S
   },
   {
     title: 'Overdose First Aid',
