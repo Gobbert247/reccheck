@@ -7,43 +7,49 @@ const sections = [
   {
     title: 'Drug Interaction Checker',
     desc: 'Instantly cross-check combinations for potential risks.',
-    image: '/images/interactions.png', // molecule structure
+    image: '/images/interactions.png',
     href: '/checker',
   },
   {
     title: 'Regional Alerts',
     desc: 'See contaminated or dangerous batches near you.',
-    image: '/images/alert.png',
-    href: '/alerts',S
+    image: '/images/alertmapplaceholder.png',
+    href: '/alerts',
   },
   {
     title: 'Overdose First Aid',
     desc: 'Immediate steps to help someone in trouble.',
-    image: '/images/IMG-20250801-WA0005.jpg', // candle
+    image: '/images/IMG-20250801-WA0005.jpg',
     href: '/firstaid',
   },
   {
     title: 'Psychedelic Safety',
     desc: 'Understand safe use, set/setting, and what’s real.',
-    image: '/images/mushrooms.jpg', // renamed by you
+    image: '/images/mushrooms.jpg',
     href: '/psychedelics',
   },
   {
     title: 'Addiction Counselling',
     desc: 'Non-judgemental help with treatment options.',
-    image: '/images/IMG-20250801-WA0011.jpg', // woman seated
+    image: '/images/IMG-20250801-WA0011.jpg',
     href: '/support',
   },
   {
     title: 'Buy Drug Test Kits',
     desc: 'Order trusted test kits, discreet and legal.',
-    image: '/images/IMG-20250801-WA0003.jpg', // vials/test kits
+    image: '/images/recchecktestkit.png',
+    href: '/testkits',
+  },
+  {
+    title: 'More Drug Test Kits',
+    desc: 'Explore our full range of multi-panel options.',
+    image: '/images/drugtestkit2.png',
     href: '/testkits',
   },
   {
     title: 'Community & Events',
     desc: 'Festivals, harm reduction booths, safe party tools.',
-    image: '/images/IMG-20250801-WA0009.jpg', // WA background image
+    image: '/images/IMG-20250801-WA0009.jpg',
     href: '/events',
   },
 ];
