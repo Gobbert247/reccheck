@@ -41,15 +41,9 @@ const sections = [
     href: '/testkits',
   },
   {
-    title: 'More Drug Test Kits',
-    desc: 'Explore our full range of multi-panel options.',
-    image: '/images/drugtestkit2.png',
-    href: '/testkits',
-  },
-  {
     title: 'Community & Events',
     desc: 'Festivals, harm reduction booths, safe party tools.',
-    image: '/images/IMG-20250801-WA0009.jpg',
+    image: '/images/harm.png',
     href: '/events',
   },
 ];
@@ -58,10 +52,10 @@ export default function Home() {
   return (
     <main className="bg-black text-white font-sans relative overflow-hidden">
       {/* Background Layer */}
-      <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
+      <div className="absolute inset-0 z-0 opacity-5 pointer-events-none">
         <Image
-          src="/images/IMG-20250801-WA0009.jpg"
-          alt="Ambient WA background"
+          src="/images/fa67739a-6ae8-4fc0-a25d-a7960898ea1b.png"
+          alt="Smoke background texture"
           layout="fill"
           objectFit="cover"
           className="blur-sm grayscale"
@@ -115,24 +109,24 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Feature Sections */}
-      <div id="features">
+      {/* Tiled Feature Sections */}
+      <div id="features" className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 px-6 py-16 z-10 relative">
         {sections.map((section, idx) => (
-          <Link href={section.href} key={idx}>
+          <Link href={section.href} key={idx} className="group">
             <div
-              className="relative h-[90vh] flex items-center justify-center text-center group cursor-pointer"
+              className="relative h-[400px] flex items-center justify-center text-center rounded-xl overflow-hidden shadow-xl border border-white/10 group-hover:scale-[1.02] transition-transform"
               style={{
                 backgroundImage: `url(${section.image})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
               }}
             >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
-              <div className="relative z-10 px-6 py-12 backdrop-blur-md bg-white/5 rounded-xl border border-white/10 shadow-2xl max-w-2xl transition group-hover:scale-[1.03]">
-                <h2 className="text-4xl md:text-5xl font-semibold mb-4 tracking-tight">
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent" />
+              <div className="relative z-10 px-6 py-8 backdrop-blur-md bg-white/5 rounded-xl">
+                <h2 className="text-3xl font-semibold mb-2 tracking-tight">
                   {section.title}
                 </h2>
-                <p className="text-lg text-gray-300 leading-relaxed">
+                <p className="text-md text-gray-300 leading-relaxed">
                   {section.desc}
                 </p>
               </div>
