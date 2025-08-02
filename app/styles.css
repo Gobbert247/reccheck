@@ -9,14 +9,14 @@
   }
 }
 
-.smoke-overlay {
+.smoke-underlay {
   position: fixed;
   inset: 0;
   background-image: url('/images/smoke1.png');
   background-repeat: repeat;
   background-size: cover;
   animation: smoke 30s linear infinite;
-  opacity: 0.12; /* lower if needed */
+  opacity: 0.12;
   z-index: 0;
   pointer-events: none;
 }

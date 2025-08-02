@@ -64,16 +64,11 @@ export default function Home() {
 
       <main className="bg-black text-white font-sans relative overflow-hidden">
 
-        {/* 🌫️ Static Smoke Overlay (optional) */}
+        {/* 🌫️ Static Smoke Underlay (optional) */}
        
-        {/* 🌬️ Left Side Rising Smoke – using smoke2.png */}
-       <div className="fixed left-0 top-0 h-full w-[200px] z-0 pointer-events-none opacity-20">
-  <img
-    src="/images/smoke2.png"
-    alt="Smoke effect"
-    className="h-full w-full object-cover animate-fadeup"
-  />
-</div>
+        {/* 🌬️ Left Side Rising Smoke – using smoke1.png */}
+       <div className="smoke-underlay" />
+
 
         {/* 🔲 Noise Texture */}
         <div
