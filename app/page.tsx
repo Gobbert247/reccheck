@@ -97,7 +97,7 @@ export default function Home() {
 <section className="min-h-screen flex flex-col items-center justify-center px-6 py-24 relative z-20">
   <div className="w-full text-center space-y-8">
     <Image
-      src="/images/logo4.png"
+      src="/images/logo7.png"
       alt="RecCheck Logo"
       width={768}
       height={768}
