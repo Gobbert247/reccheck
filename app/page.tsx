@@ -7,7 +7,7 @@ const sections = [
   {
     title: 'Drug Interaction Checker',
     desc: 'Instantly cross-check combinations for potential risks.',
-    image: '/images/molecule.jpg',
+    image: '/images/interactions.jpg', // molecule structure
     href: '/checker',
   },
   {
@@ -19,31 +19,31 @@ const sections = [
   {
     title: 'Overdose First Aid',
     desc: 'Immediate steps to help someone in trouble.',
-    image: '/images/overdose.jpg',
+    image: '/images/IMG-20250801-WA0005.jpg', // candle
     href: '/firstaid',
   },
   {
     title: 'Psychedelic Safety',
     desc: 'Understand safe use, set/setting, and what’s real.',
-    image: '/images/mushrooms.jpg',
+    image: '/images/mushrooms.jpg', // renamed by you
     href: '/psychedelics',
   },
   {
     title: 'Addiction Counselling',
     desc: 'Non-judgemental help with treatment options.',
-    image: '/images/crying.jpg',
+    image: '/images/IMG-20250801-WA0011.jpg', // woman seated
     href: '/support',
   },
   {
     title: 'Buy Drug Test Kits',
     desc: 'Order trusted test kits, discreet and legal.',
-    image: '/images/vials.jpg',
+    image: '/images/IMG-20250801-WA0003.jpg', // vials/test kits
     href: '/testkits',
   },
   {
     title: 'Community & Events',
     desc: 'Festivals, harm reduction booths, safe party tools.',
-    image: '/images/smoke.jpg',
+    image: '/images/IMG-20250801-WA0009.jpg', // WA background image
     href: '/events',
   },
 ];
@@ -51,17 +51,18 @@ const sections = [
 export default function Home() {
   return (
     <main className="bg-black text-white font-sans relative overflow-hidden">
-      {/* Background Layers */}
+      {/* Background Layer */}
       <div className="absolute inset-0 z-0 opacity-10 pointer-events-none">
         <Image
-          src="/images/smoke.jpg"
-          alt="Smoke background"
+          src="/images/IMG-20250801-WA0009.jpg"
+          alt="Ambient WA background"
           layout="fill"
           objectFit="cover"
-          className="blur-sm"
+          className="blur-sm grayscale"
         />
       </div>
 
+      {/* Noise Texture Overlay */}
       <div
         className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
         style={{
