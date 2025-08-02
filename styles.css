@@ -25,6 +25,7 @@
   width: 100%;
   height: 100%;
   background-image: url('smoke1.png');
+  background-image: url('/images/smoke1.png'); 
   background-repeat: repeat;
   background-size: cover;
   opacity: 0.4;
