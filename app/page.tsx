@@ -52,8 +52,8 @@ export default function Home() {
   return (
     <main className="bg-black text-white font-sans relative overflow-hidden">
 
-      {/* 🌫️ Smokey Background Overlay */}
-      <div className="fixed top-0 left-0 w-full h-full -z-20 opacity-10 pointer-events-none">
+      {/* 🌫️ Static Smokey Background Image */}
+      <div className="fixed top-0 left-0 w-full h-full -z-20 pointer-events-none opacity-10">
         <Image
           src="/images/smokeybg.png"
           alt="Smokey texture"
@@ -63,14 +63,14 @@ export default function Home() {
         />
       </div>
 
-      {/* 🔲 Noise Texture */}
+      {/* 📶 Noise Texture Overlay */}
       <div
         className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"
         style={{
           backgroundImage: "url('/images/noise.svg')",
           backgroundRepeat: 'repeat',
           backgroundSize: '300px',
-          opacity: 0.03,
+          opacity: 0.2,
         }}
       />
 
