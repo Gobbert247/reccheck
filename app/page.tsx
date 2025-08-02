@@ -3,6 +3,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
+<link rel="stylesheet" href="styles.css">
 
 const sections = [
   {
