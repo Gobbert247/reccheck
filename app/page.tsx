@@ -52,30 +52,31 @@ export default function Home() {
   return (
     <main className="bg-black text-white font-sans relative overflow-hidden">
 
-      {/* 🌫️ Static Smokey Background Image */}
-      <div className="fixed top-0 left-0 w-full h-full -z-20 pointer-events-none opacity-10">
+      {/* 🌫️ Smokey Background Overlay */}
+      <div className="fixed top-0 left-0 w-full h-full -z-20 pointer-events-none opacity-50">
         <Image
           src="/images/smokeybg.png"
           alt="Smokey texture"
           fill
-          className="object-cover blur-sm grayscale"
+          className="object-cover blur-[2px] grayscale contrast-150 brightness-150"
           priority
         />
       </div>
 
-      {/* 📶 Noise Texture Overlay */}
+      {/* 🔲 Noise Texture */}
       <div
         className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"
         style={{
           backgroundImage: "url('/images/noise.svg')",
           backgroundRepeat: 'repeat',
           backgroundSize: '300px',
-          opacity: 0.2,
+          opacity: 0.03,
         }}
       />
 
       {/* 🧠 Hero Section */}
       <section className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 py-24 relative z-10">
+        {/* 🖼️ Logo and Tagline */}
         <div className="lg:w-1/2 text-center lg:text-left space-y-8">
           <Image
             src="/images/logo2.png"
@@ -116,6 +117,9 @@ export default function Home() {
                   backgroundImage: `url(${section.image})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
+                  ...(section.title === 'Substance Safety' && {
+                    filter: 'brightness(1.3) contrast(1.15)',
+                  }),
                 }}
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent transition-opacity group-hover:opacity-90" />
