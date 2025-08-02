@@ -129,18 +129,18 @@ export default function Home() {
         </section>
 
      
-        {/* 📘 Disclaimer */}
-        <section className="bg-black text-white px-6 py-20 border-t border-white/10 relative z-20">
-          <div className="max-w-3xl mx-auto text-center">
-            <h2 className="text-3xl font-semibold mb-4">Educational Disclaimer</h2>
-            <p className="mb-2 text-gray-400">
-              RecCheck is a harm minimisation tool built for <strong>educational purposes</strong> only. We do <strong>not</strong> promote or encourage substance use.
-            </p>
-            <p className="text-gray-500">
-              Always consult a licensed medical professional. Nothing on this site constitutes medical advice.
-            </p>
-          </div>
-        </section>
+       {/* 📘 Disclaimer */}
+<section className="bg-black text-white px-6 py-20 border-t border-white/10 relative z-20">
+  <div className="max-w-3xl mx-auto text-center">
+    <h2 className="text-3xl font-semibold mb-4">Educational Disclaimer</h2>
+    <p className="mb-2 text-gray-400">
+      RecCheck is a harm minimisation tool built for <strong>educational purposes</strong> only. We do <strong>not</strong> promote or encourage substance use.
+    </p>
+    <p className="text-gray-500">
+      Always consult a licensed medical professional. Nothing on this site constitutes medical advice.
+    </p>
+  </div>
+</section>
 
         {/* 🔚 Footer */}
         <footer className="bg-black text-center text-sm text-gray-600 py-8 border-t border-white/10 relative z-20">
