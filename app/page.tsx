@@ -132,16 +132,15 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             {sections.map((section, idx) => (
               <Link href={section.href} key={idx}>
-                <div
-                  className="relative group h-[60vh] rounded-xl overflow-hidden shadow-lg cursor-pointer"
-                  style={{
-                    backgroundImage: `url(${section.image})`,
-                    backgroundSize: 'cover',
-                    backgroundPosition: 'center',
-                  }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent transition-opacity group-hover:opacity-90" />
-                  <div className="relative z-10 p-6 backdrop-blur-sm bg-white/5 rounded-xl border border-white/10 m-4 transition-transform group-hover:scale-[1.03]">
+  <div
+    className="relative group h-[60vh] rounded-xl overflow-hidden shadow-lg cursor-pointer"
+    style={{
+      backgroundImage: `url(${section.image})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center',
+    }}
+  >
+                                    <div className="relative z-10 p-6 backdrop-blur-sm bg-white/5 rounded-xl border border-white/10 m-4 transition-transform group-hover:scale-[1.03]">
                     <h2 className="text-3xl font-semibold mb-2 tracking-tight">
                       {section.title}
                     </h2>
