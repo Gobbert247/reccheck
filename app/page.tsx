@@ -53,12 +53,12 @@ export default function Home() {
     <main className="bg-black text-white font-sans relative overflow-hidden">
 
       {/* 🌫️ Smokey Background Overlay */}
-      <div className="fixed top-0 left-0 w-full h-full -z-20 pointer-events-none opacity-50">
+      <div className="fixed top-0 left-0 w-full h-full -z-20 pointer-events-none">
         <Image
           src="/images/smokeybg.png"
           alt="Smokey texture"
           fill
-          className="object-cover blur-[2px] grayscale contrast-150 brightness-150"
+          className="object-cover blur-sm grayscale opacity-20"
           priority
         />
       </div>
@@ -117,9 +117,7 @@ export default function Home() {
                   backgroundImage: `url(${section.image})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
-                  ...(section.title === 'Substance Safety' && {
-                    filter: 'brightness(1.3) contrast(1.15)',
-                  }),
+                  filter: section.title === 'Substance Safety' ? 'brightness(1.2)' : 'none',
                 }}
               >
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent transition-opacity group-hover:opacity-90" />
