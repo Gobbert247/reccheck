@@ -8,3 +8,21 @@ body {
   color: white;
   font-family: sans-serif;
 }
+
+@keyframes fadeup {
+  0% {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+}
+
+.animate-fadeup {
+  animation: fadeup 5s linear infinite;
+}
