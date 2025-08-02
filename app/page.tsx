@@ -76,15 +76,15 @@ export default function Home() {
       />
 
       {/* 🧠 Hero Section */}
-      <section className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 py-24 relative z-10">
-        <div className="lg:w-1/2 text-center lg:text-left space-y-8">
+      <section className="min-h-screen flex items-center justify-center px-6 py-24 relative z-10">
+        <div className="text-center space-y-8 max-w-2xl">
           <h1 className="text-6xl font-extrabold leading-tight tracking-tight mb-6">
             RecCheck is Live
           </h1>
-          <p className="text-xl text-gray-400 max-w-xl mx-auto lg:mx-0">
+          <p className="text-xl text-gray-400">
             Smart safety tools for people who use drugs. Built without judgement.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/simulator"
               className="bg-white text-black font-semibold px-6 py-3 rounded-full hover:bg-gray-200 transition"
@@ -98,17 +98,6 @@ export default function Home() {
               View Features
             </Link>
           </div>
-        </div>
-
-        <div className="lg:w-1/2 mt-12 lg:mt-0 flex justify-center">
-          <Image
-            src="/images/phone-mockup.png"
-            alt="App preview"
-            width={400}
-            height={800}
-            className="rounded-2xl shadow-2xl object-cover"
-            priority
-          />
         </div>
       </section>
 
