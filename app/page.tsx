@@ -53,7 +53,7 @@ export default function Home() {
     <main className="bg-black text-white font-sans relative overflow-hidden">
 
       {/* 🌫️ Global Background Image */}
-      <div className="fixed top-0 left-0 w-full h-full -z-10">
+      <div className="fixed top-0 left-0 w-full h-full -z-20">
         <Image
           src="/images/IMG-20250801-WA0009.jpg"
           alt="Faint ambient background"
@@ -64,13 +64,14 @@ export default function Home() {
         />
       </div>
 
-      {/* 🔲 Optional Noise Overlay */}
+      {/* 🟫 Noise Overlay */}
       <div
-        className="fixed top-0 left-0 w-full h-full -z-10 opacity-[0.03] pointer-events-none"
+        className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"
         style={{
           backgroundImage: "url('/images/noise.svg')",
           backgroundRepeat: 'repeat',
           backgroundSize: '300px',
+          opacity: 0.04,
         }}
       />
 
