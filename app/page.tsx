@@ -3,7 +3,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Link from 'next/link';
-import '../styles/styles.css';
+import '../styles.css';
 
 
 const sections = [
