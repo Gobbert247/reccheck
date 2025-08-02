@@ -65,24 +65,15 @@ export default function Home() {
       <main className="bg-black text-white font-sans relative overflow-hidden">
 
         {/* 🌫️ Static Smoke Overlay (optional) */}
-        <div className="fixed inset-0 z-0 pointer-events-none opacity-0">
-          <Image
-            src="/images/smoke1.png"
-            alt="Static smoke overlay"
-            fill
-            className="object-cover"
-            priority
-          />
-        </div>
-
+       
         {/* 🌬️ Left Side Rising Smoke – using smoke2.png */}
-        <div className="fixed left-0 top-0 h-full w-[200px] z-10 pointer-events-none opacity-20">
-          <img
-            src="/images/smoke2.png"
-            alt="Smoke effect"
-            className="h-full w-full object-cover animate-fadeup"
-          />
-        </div>
+       <div className="fixed left-0 top-0 h-full w-[200px] z-0 pointer-events-none opacity-20">
+  <img
+    src="/images/smoke2.png"
+    alt="Smoke effect"
+    className="h-full w-full object-cover animate-fadeup"
+  />
+</div>
 
         {/* 🔲 Noise Texture */}
         <div
