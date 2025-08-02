@@ -51,39 +51,44 @@ const sections = [
 export default function Home() {
   return (
     <main className="bg-black text-white font-sans relative overflow-hidden">
-
-      {/* 🌫️ Smoke Background Image */}
-      <div className="absolute inset-0 -z-20">
+      {/* 🌫️ Smokey Background Overlay */}
+      <div className="fixed top-0 left-0 w-full h-full -z-20 opacity-10 pointer-events-none">
         <Image
-          src="/images/IMG-20250801-WA0009.jpg"
-          alt="Smoke background"
+          src="/images/smokeybg.png"
+          alt="Smokey texture"
           fill
-          className="object-cover opacity-10 blur-sm grayscale"
+          className="object-cover blur-sm grayscale"
           priority
         />
       </div>
 
-      {/* 📶 Noise Overlay */}
+      {/* 🔲 Noise Texture */}
       <div
-        className="absolute inset-0 -z-10 pointer-events-none"
+        className="fixed top-0 left-0 w-full h-full -z-10 pointer-events-none"
         style={{
           backgroundImage: "url('/images/noise.svg')",
           backgroundRepeat: 'repeat',
           backgroundSize: '300px',
-          opacity: 0.04,
+          opacity: 0.03,
         }}
       />
 
       {/* 🧠 Hero Section */}
-      <section className="min-h-screen flex items-center justify-center px-6 py-24 relative z-10">
-        <div className="text-center space-y-8 max-w-2xl">
-          <h1 className="text-6xl font-extrabold leading-tight tracking-tight mb-6">
-            RecCheck is Live
-          </h1>
-          <p className="text-xl text-gray-400">
+      <section className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 py-24 relative z-10">
+        {/* 🖼️ Logo and Tagline */}
+        <div className="lg:w-1/2 text-center lg:text-left space-y-8">
+          <Image
+            src="/images/logo2.png"
+            alt="RecCheck Logo"
+            width={360}
+            height={140}
+            className="mx-auto lg:mx-0"
+            priority
+          />
+          <p className="text-xl text-gray-400 max-w-xl mx-auto lg:mx-0">
             Smart safety tools for people who use drugs. Built without judgement.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
             <Link
               href="/simulator"
               className="bg-white text-black font-semibold px-6 py-3 rounded-full hover:bg-gray-200 transition"
@@ -98,6 +103,18 @@ export default function Home() {
             </Link>
           </div>
         </div>
+
+        {/* 📱 Optional phone mockup */}
+        {/* <div className="lg:w-1/2 mt-12 lg:mt-0 flex justify-center">
+          <Image
+            src="/images/phone-mockup.png"
+            alt="App preview"
+            width={400}
+            height={800}
+            className="rounded-2xl shadow-2xl object-cover"
+            priority
+          />
+        </div> */}
       </section>
 
       {/* 🧱 Feature Tiles */}
@@ -143,8 +160,4 @@ export default function Home() {
 
       {/* 🔚 Footer */}
       <footer className="bg-black text-center text-sm text-gray-600 py-8 border-t border-white/10 relative z-10">
-        <p>© 2025 RecCheck. Built with care, not judgement. Be safe out there.</p>
-      </footer>
-    </main>
-  );
-}
+        <p>© 2025 RecCheck. Built with care, not judgement. Be safe ou
