@@ -51,20 +51,22 @@ const sections = [
 export default function Home() {
   return (
     <main className="bg-black text-white font-sans relative overflow-hidden">
-      {/* Background Layer */}
-      <div className="absolute inset-0 z-0 opacity-5 pointer-events-none">
+
+      {/* 🌫️ Global Background Image */}
+      <div className="fixed top-0 left-0 w-full h-full -z-10">
         <Image
-          src="/images/fa67739a-6ae8-4fc0-a25d-a7960898ea1b.png"
-          alt="Smoke background texture"
+          src="/images/IMG-20250801-WA0009.jpg"
+          alt="Faint ambient background"
           layout="fill"
           objectFit="cover"
-          className="blur-sm grayscale"
+          className="opacity-10 blur-sm grayscale"
+          priority
         />
       </div>
 
-      {/* Noise Texture Overlay */}
+      {/* 🔲 Optional Noise Overlay */}
       <div
-        className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none"
+        className="fixed top-0 left-0 w-full h-full -z-10 opacity-[0.03] pointer-events-none"
         style={{
           backgroundImage: "url('/images/noise.svg')",
           backgroundRepeat: 'repeat',
@@ -72,7 +74,7 @@ export default function Home() {
         }}
       />
 
-      {/* Hero Section */}
+      {/* 🧠 Hero Section */}
       <section className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 py-24 relative z-10">
         <div className="lg:w-1/2 text-center lg:text-left space-y-8">
           <h1 className="text-6xl font-extrabold leading-tight tracking-tight mb-6">
@@ -109,33 +111,35 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Tiled Feature Sections */}
-      <div id="features" className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 px-6 py-16 z-10 relative">
-        {sections.map((section, idx) => (
-          <Link href={section.href} key={idx} className="group">
-            <div
-              className="relative h-[400px] flex items-center justify-center text-center rounded-xl overflow-hidden shadow-xl border border-white/10 group-hover:scale-[1.02] transition-transform"
-              style={{
-                backgroundImage: `url(${section.image})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
-            >
-              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent" />
-              <div className="relative z-10 px-6 py-8 backdrop-blur-md bg-white/5 rounded-xl">
-                <h2 className="text-3xl font-semibold mb-2 tracking-tight">
-                  {section.title}
-                </h2>
-                <p className="text-md text-gray-300 leading-relaxed">
-                  {section.desc}
-                </p>
+      {/* 🧱 Feature Tiles */}
+      <section id="features" className="relative z-10 px-6 pb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+          {sections.map((section, idx) => (
+            <Link href={section.href} key={idx}>
+              <div
+                className="relative group h-[60vh] rounded-xl overflow-hidden shadow-lg cursor-pointer"
+                style={{
+                  backgroundImage: `url(${section.image})`,
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent transition-opacity group-hover:opacity-90" />
+                <div className="relative z-10 p-6 backdrop-blur-sm bg-white/5 rounded-xl border border-white/10 m-4 transition-transform group-hover:scale-[1.03]">
+                  <h2 className="text-3xl font-semibold mb-2 tracking-tight">
+                    {section.title}
+                  </h2>
+                  <p className="text-lg text-gray-300 leading-snug">
+                    {section.desc}
+                  </p>
+                </div>
               </div>
-            </div>
-          </Link>
-        ))}
-      </div>
+            </Link>
+          ))}
+        </div>
+      </section>
 
-      {/* Disclaimer */}
+      {/* 📘 Disclaimer */}
       <section className="bg-black text-white px-6 py-20 border-t border-white/10 relative z-10">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-semibold mb-4">Educational Disclaimer</h2>
@@ -148,7 +152,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
+      {/* 🔚 Footer */}
       <footer className="bg-black text-center text-sm text-gray-600 py-8 border-t border-white/10 relative z-10">
         <p>© 2025 RecCheck. Built with care, not judgement. Be safe out there.</p>
       </footer>
