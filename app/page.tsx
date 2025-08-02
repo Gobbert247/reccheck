@@ -25,7 +25,7 @@ const sections = [
   {
     title: 'Substance Safety',
     desc: 'Understand safe use, set/setting, and what’s real.',
-    image: '/images/app.drug.png',
+    image: '/images/ss.png',
     href: '/psychedelics',
   },
   {
@@ -51,6 +51,7 @@ const sections = [
 export default function Home() {
   return (
     <main className="bg-black text-white font-sans relative overflow-hidden">
+
       {/* 🌫️ Smokey Background Overlay */}
       <div className="fixed top-0 left-0 w-full h-full -z-20 opacity-10 pointer-events-none">
         <Image
@@ -75,7 +76,6 @@ export default function Home() {
 
       {/* 🧠 Hero Section */}
       <section className="min-h-screen flex flex-col lg:flex-row items-center justify-center px-6 py-24 relative z-10">
-        {/* 🖼️ Logo and Tagline */}
         <div className="lg:w-1/2 text-center lg:text-left space-y-8">
           <Image
             src="/images/logo2.png"
@@ -103,18 +103,6 @@ export default function Home() {
             </Link>
           </div>
         </div>
-
-        {/* 📱 Optional phone mockup */}
-        {/* <div className="lg:w-1/2 mt-12 lg:mt-0 flex justify-center">
-          <Image
-            src="/images/phone-mockup.png"
-            alt="App preview"
-            width={400}
-            height={800}
-            className="rounded-2xl shadow-2xl object-cover"
-            priority
-          />
-        </div> */}
       </section>
 
       {/* 🧱 Feature Tiles */}
@@ -160,4 +148,8 @@ export default function Home() {
 
       {/* 🔚 Footer */}
       <footer className="bg-black text-center text-sm text-gray-600 py-8 border-t border-white/10 relative z-10">
-        <p>© 2025 RecCheck. Built with care, not judgement. Be safe ou
+        <p>© 2025 RecCheck. Built with care, not judgement. Be safe out there.</p>
+      </footer>
+    </main>
+  );
+}
