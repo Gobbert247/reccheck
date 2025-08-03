@@ -22,6 +22,8 @@ export default function AlertsPage() {
     fetch('/api/alerts')
       .then(res => res.json())
       .then(data => {
+console.log('📦 Loaded alerts:', data);
+
         setAlerts(data);
         setLoading(false);
       })
