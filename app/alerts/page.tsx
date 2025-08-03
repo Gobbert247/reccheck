@@ -1,3 +1,8 @@
+'use client';
+
+import Image from 'next/image';
+import { useState, useEffect } from 'react';
+
 type Alert = {
   title: string;
   date: string;
@@ -5,11 +10,6 @@ type Alert = {
   link: string;
   source: string;
 };
-
-'use client';
-
-import Image from 'next/image';
-import { useState, useEffect } from 'react';
 
 export default function AlertsPage() {
   const [alerts, setAlerts] = useState<Alert[]>([]);
