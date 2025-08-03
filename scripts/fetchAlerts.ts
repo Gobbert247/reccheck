@@ -55,7 +55,9 @@ const getRegionFromText = (text: string): string => {
         const parsedDate = new Date(dateStr);
 
         // TEMP: Remove this to allow all entries during debug
-        // if (isNaN(parsedDate.getTime()) || parsedDate < cutoffDate) continue;
+        // if (isNaN(parsedDate.getTime())) {
+  console.warn('⚠️ Skipping alert due to invalid date:', rawDate);
+  continue;
         if (isNaN(parsedDate.getTime())) {
           console.warn(`❌ Unreadable date for ${url}`);
           continue;
