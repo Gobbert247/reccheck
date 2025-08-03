@@ -1,17 +1,31 @@
 'use client';
 
 import Image from 'next/image';
-import { useState } from 'react';
-import { alerts } from '@/data/alerts';
+import { useState, useEffect } from 'react';
 
 export default function AlertsPage() {
+  const [alerts, setAlerts] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [selectedRegion, setSelectedRegion] = useState('All');
+
+  const regions = ['All', 'NSW', 'VIC', 'QLD'];
+
+  useEffect(() => {
+    fetch('/api/alerts')
+      .then(res => res.json())
+      .then(data => {
+        setAlerts(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Failed to load alerts:', err);
+        setLoading(false);
+      });
+  }, []);
 
   const filteredAlerts = selectedRegion === 'All'
     ? alerts
     : alerts.filter(alert => alert.region.includes(selectedRegion));
-
-  const regions = ['All', 'NSW', 'VIC', 'QLD'];
 
   return (
     <main className="relative bg-black text-white min-h-screen px-6 py-20 overflow-hidden">
@@ -48,14 +62,18 @@ export default function AlertsPage() {
 
         {/* 📋 List view of alerts */}
         <div className="space-y-4">
-          {filteredAlerts.map(alert => (
-            <div
-              key={alert.title}
-              className="bg-white/5 border border-white/10 p-4 rounded-xl"
-            >
-              <h2 className="text-xl font-semibold">{alert.title}</h2>
-            </div>
-          ))}
+          {loading ? (
+            <p className="text-center text-gray-400">Loading alerts...</p>
+          ) : (
+            filteredAlerts.map(alert => (
+              <div
+                key={alert.title}
+                className="bg-white/5 border border-white/10 p-4 rounded-xl"
+              >
+                <h2 className="text-xl font-semibold">{alert.title}</h2>
+              </div>
+            ))
+          )}
         </div>
       </div>
     </main>
