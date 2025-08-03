@@ -22,7 +22,7 @@ const getRegionFromText = (text: string): string => {
     const $ = cheerio.load(html);
 
     const links = new Set<string>();
-    $('a[href^="/alerts_warnings/"]').each((_: any, el: any) => {
+    $('a[href^="/alerts_warnings/"]').each((_, el) => {
       const href = $(el).attr('href');
       if (href && !href.includes('/category/') && !href.includes('#')) {
         links.add(`${BASE_URL}${href}`);
@@ -30,7 +30,7 @@ const getRegionFromText = (text: string): string => {
     });
 
     const cutoffDate = new Date();
-    cutoffDate.setDate(cutoffDate.getDate() - 120); // ⏳ Extended filter to 120 days
+    cutoffDate.setDate(cutoffDate.getDate() - 120); // ⏳ Look back 120 days
 
     const alerts: any[] = [];
 
@@ -41,18 +41,29 @@ const getRegionFromText = (text: string): string => {
         const $$ = cheerio.load(alertHtml);
 
         const title = $$('h1').first().text().trim();
+        const rawDate = $$('.post-date').first().text().trim();
+        console.log(`📅 Raw .post-date from ${url}:`, rawDate);
 
-        // 🔍 Fallback date parser from ".post-date"
-        const rawDate = $$('.post-date').first().text().trim(); // e.g., "Posted: July 10, 2024"
         const dateMatch = rawDate.match(/Posted:\s*(.+)/i);
-        const parsedDate = dateMatch ? new Date(dateMatch[1]) : new Date(NaN);
+        let dateStr = dateMatch ? dateMatch[1].trim() : '';
 
-        // 🪵 DEBUG: log date + title
-        console.log(`[${parsedDate.toISOString().split('T')[0]}] ${title}`);
+        if (!/\d{4}/.test(dateStr)) {
+          const currentYear = new Date().getFullYear();
+          dateStr += ` ${currentYear}`;
+        }
 
-        if (isNaN(parsedDate.getTime()) || parsedDate < cutoffDate) continue;
+        const parsedDate = new Date(dateStr);
+
+        // TEMP: Remove this to allow all entries during debug
+        // if (isNaN(parsedDate.getTime()) || parsedDate < cutoffDate) continue;
+        if (isNaN(parsedDate.getTime())) {
+          console.warn(`❌ Unreadable date for ${url}`);
+          continue;
+        }
 
         const region = getRegionFromText(title);
+
+        console.log(`[${parsedDate.toISOString().split('T')[0]}] ${title}`);
 
         alerts.push({
           title,
@@ -67,13 +78,17 @@ const getRegionFromText = (text: string): string => {
       }
     }
 
-    // ✅ Write all results at once (outside loop)
+    // 🔁 Remove duplicates by URL
+    const uniqueAlerts = Array.from(
+      new Map(alerts.map(alert => [alert.link, alert])).values()
+    );
+
     const outDir = path.dirname(OUTPUT_PATH);
     if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
 
-    fs.writeFileSync(OUTPUT_PATH, JSON.stringify(alerts, null, 2));
-    console.log(`✅ Saved ${alerts.length} alerts to ${OUTPUT_PATH}`);
-
+    fs.writeFileSync(OUTPUT_PATH, JSON.stringify(uniqueAlerts, null, 2));
+    console.log(`✅ Saved ${uniqueAlerts.length} unique alerts to ${OUTPUT_PATH}`);
+    
   } catch (err) {
     console.error('❌ Failed to fetch alerts:', err);
   }
