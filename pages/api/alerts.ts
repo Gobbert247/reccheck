@@ -1,7 +1,7 @@
 // pages/api/alerts.ts
 import fs from 'fs';
 import path from 'path';
-import type { NextApiRequest, NextApiResponse } from 'next';
+import type { NextApiRequest, NextApiResponse } from 'next/types';
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const filePath = path.join(process.cwd(), 'data/generated/alerts.json');
