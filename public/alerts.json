@@ -1,1 +1,13 @@
+[
+  {
+    "id": "seed-1",
+    "title": "High-potency MDMA tablets reported",
+    "region": "NSW",
+    "date": "2025-12-20",
+    "source": "Example Harm Reduction Service",
+    "url": "https://example.org/alerts/seed-1",
+    "summary": "Test seed alert so RecCheck can display content.",
+    "tags": ["MDMA", "High potency"]
+  }
+]
 
