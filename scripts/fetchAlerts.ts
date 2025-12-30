@@ -1,117 +1,145 @@
-import fetch from 'node-fetch';
-import * as cheerio from 'cheerio';
+// RecCheck Alert Orchestrator
+// Coordinates all scraper modules and generates unified alerts.json
+
+import { scrapeTheKnow, DrugAlert } from './scrapers/theKnow';
+import { scrapeNSWHealth } from './scrapers/nswHealth';
+import { scrapeVICHealth } from './scrapers/vicHealth';
 import fs from 'fs';
 import path from 'path';
 
-const BASE_URL = 'https://theknow.org.au';
-const ALERTS_URL = `${BASE_URL}/alerts_warnings/`;
-const NSW_HEALTH_URL = 'https://www.health.nsw.gov.au/aod/public-drug-alerts/Pages/default.aspx';
 const OUTPUT_PATH = path.join(__dirname, '../data/generated/alerts.json');
 
-// Infer region from title text
-const getRegionFromText = (text: string): string => {
-  const regions = ['NSW', 'VIC', 'QLD', 'SA', 'WA', 'TAS', 'NT', 'ACT'];
-  const upperText = text.toUpperCase();
-  return regions.find(r => upperText.includes(r)) || 'Unknown';
-};
+interface AlertStats {
+  total: number;
+  bySource: Record<string, number>;
+  byState: Record<string, number>;
+  bySeverity: Record<string, number>;
+  lastUpdated: string;
+}
 
-(async () => {
+async function main() {
+  console.log('\n🚀 RecCheck Alert Orchestrator Starting...\n');
+  
+  const allAlerts: DrugAlert[] = [];
+  const stats: AlertStats = {
+    total: 0,
+    bySource: {},
+    byState: {},
+    bySeverity: {},
+    lastUpdated: new Date().toISOString()
+  };
+
+  // Run all scrapers in parallel for efficiency
   try {
-    const alerts: any[] = [];
+    const [theKnowAlerts, nswHealthAlerts, vicHealthAlerts] = await Promise.allSettled([
+      scrapeTheKnow(),
+      scrapeNSWHealth(),
+      scrapeVICHealth()
+    ]);
 
-    const cutoffDate = new Date();
-    cutoffDate.setDate(cutoffDate.getDate() - 120);
-
-    // 🟠 NSW HEALTH
-    try {
-      console.log('🔍 Fetching alerts from NSW Health...');
-      const res = await fetch(NSW_HEALTH_URL);
-      const html = await res.text();
-      const $ = cheerio.load(html);
-
-      $('table.ms-rteTable-default tr').each((_, row) => {
-        const columns = $(row).find('td');
-        if (columns.length >= 2) {
-          const dateStr = $(columns[0]).text().trim();
-          const linkEl = $(columns[1]).find('a');
-          const title = linkEl.text().trim();
-          const href = linkEl.attr('href');
-
-          const parsedDate = new Date(dateStr);
-          if (!href || isNaN(parsedDate.getTime()) || parsedDate < cutoffDate) return;
-
-          const fullLink = href.startsWith('http') ? href : `https://www.health.nsw.gov.au${href}`;
-          const region = getRegionFromText(title);
-
-          console.log(`[NSW Health - ${parsedDate.toISOString().split('T')[0]}] ${title}`);
-
-          alerts.push({
-            title,
-            date: parsedDate.toISOString().split('T')[0],
-            region,
-            link: fullLink,
-            source: 'NSW Health',
-          });
-        }
-      });
-    } catch (err) {
-      console.warn('⚠️ Failed to fetch NSW Health alerts', err);
+    // Process The Know results
+    if (theKnowAlerts.status === 'fulfilled') {
+      console.log(`✅ The Know: ${theKnowAlerts.value.length} alerts`);
+      allAlerts.push(...theKnowAlerts.value);
+    } else {
+      console.error('❌ The Know failed:', theKnowAlerts.reason);
     }
 
-    // 🟠 THE KNOW
-    console.log('🔍 Fetching alerts list from The Know...');
-    const res = await fetch(ALERTS_URL);
-    const html = await res.text();
-    const $ = cheerio.load(html);
+    // Process NSW Health results
+    if (nswHealthAlerts.status === 'fulfilled') {
+      console.log(`✅ NSW Health: ${nswHealthAlerts.value.length} alerts`);
+      allAlerts.push(...nswHealthAlerts.value);
+    } else {
+      console.error('❌ NSW Health failed:', nswHealthAlerts.reason);
+    }
 
-    const links = new Set<string>();
-    $('a[href^="/alerts_warnings/"]').each((_, el) => {
-      const href = $(el).attr('href');
-      if (href && !href.includes('/category/') && !href.includes('#')) {
-        links.add(`${BASE_URL}${href}`);
+    // Process VIC Health results
+    if (vicHealthAlerts.status === 'fulfilled') {
+      console.log(`✅ VIC Health: ${vicHealthAlerts.value.length} alerts`);
+      allAlerts.push(...vicHealthAlerts.value);
+    } else {
+      console.error('❌ VIC Health failed:', vicHealthAlerts.reason);
+    }
+
+    // Remove duplicates based on title and date
+    const uniqueAlerts = deduplicateAlerts(allAlerts);
+    
+    // Sort by date (newest first)
+    uniqueAlerts.sort((a, b) => {
+      try {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        return dateB.getTime() - dateA.getTime();
+      } catch {
+        return 0;
       }
     });
 
-    for (const url of links) {
-      try {
-        const alertRes = await fetch(url);
-        const alertHtml = await alertRes.text();
-        const $$ = cheerio.load(alertHtml);
+    // Calculate statistics
+    stats.total = uniqueAlerts.length;
+    uniqueAlerts.forEach(alert => {
+      stats.bySource[alert.source] = (stats.bySource[alert.source] || 0) + 1;
+      stats.byState[alert.location] = (stats.byState[alert.location] || 0) + 1;
+      stats.bySeverity[alert.severity] = (stats.bySeverity[alert.severity] || 0) + 1;
+    });
 
-        const metaDate = $$('.post-meta time, meta[property="article:published_time"]').attr('content');
-        const parsedDate = metaDate ? new Date(metaDate) : null;
-
-        console.log(`📅 Parsed meta date from ${url}:`, parsedDate?.toISOString() ?? 'Invalid');
-        if (!parsedDate || isNaN(parsedDate.getTime()) || parsedDate < cutoffDate) continue;
-
-        const title = $$('h1.entry-title').first().text().trim() || 'Untitled Alert';
-        const region = getRegionFromText(title);
-
-        console.log(`[${parsedDate.toISOString().split('T')[0]}] ${title}`);
-
-        alerts.push({
-          title,
-          date: parsedDate.toISOString().split('T')[0],
-          region,
-          link: url,
-          source: 'The Know',
-        });
-
-      } catch (err) {
-        console.warn(`⚠️ Failed to process ${url}`, err);
-      }
+    // Ensure output directory exists
+    const outputDir = path.dirname(OUTPUT_PATH);
+    if (!fs.existsSync(outputDir)) {
+      fs.mkdirSync(outputDir, { recursive: true });
     }
 
-    // 🟢 SAVE OUTPUT
-    const uniqueAlerts = Array.from(new Map(alerts.map(a => [a.link, a])).values());
+    // Write to file
+    fs.writeFileSync(
+      OUTPUT_PATH,
+      JSON.stringify(uniqueAlerts, null, 2),
+      'utf-8'
+    );
 
-    const outDir = path.dirname(OUTPUT_PATH);
-    if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
+    // Print summary
+    console.log('\n📊 SCRAPING SUMMARY:');
+    console.log(`   Total unique alerts: ${stats.total}`);
+    console.log('\n   By Source:');
+    Object.entries(stats.bySource).forEach(([source, count]) => {
+      console.log(`      ${source}: ${count}`);
+    });
+    console.log('\n   By State:');
+    Object.entries(stats.byState).forEach(([state, count]) => {
+      console.log(`      ${state}: ${count}`);
+    });
+    console.log('\n   By Severity:');
+    Object.entries(stats.bySeverity).forEach(([severity, count]) => {
+      console.log(`      ${severity}: ${count}`);
+    });
+    console.log(`\n✅ Alerts saved to: ${OUTPUT_PATH}`);
+    console.log(`🕐 Last updated: ${stats.lastUpdated}\n`);
 
-    fs.writeFileSync(OUTPUT_PATH, JSON.stringify(uniqueAlerts, null, 2));
-    console.log(`✅ Saved ${uniqueAlerts.length} unique alerts to ${OUTPUT_PATH}`);
-
-  } catch (err) {
-    console.error('❌ Failed to fetch alerts:', err);
+  } catch (error) {
+    console.error('❌ Fatal error in orchestrator:', error);
+    process.exit(1);
   }
-})();
+}
+
+function deduplicateAlerts(alerts: DrugAlert[]): DrugAlert[] {
+  const seen = new Set<string>();
+  const unique: DrugAlert[] = [];
+
+  for (const alert of alerts) {
+    // Create a unique key based on title (normalized) and approximate date
+    const normalizedTitle = alert.title.toLowerCase().trim();
+    const key = `${normalizedTitle}-${alert.location}`;
+    
+    if (!seen.has(key)) {
+      seen.add(key);
+      unique.push(alert);
+    }
+  }
+
+  return unique;
+}
+
+// Run the orchestrator
+main().catch(error => {
+  console.error('Unhandled error:', error);
+  process.exit(1);
+});
