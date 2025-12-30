@@ -31,8 +31,7 @@ const sections = [
     title: 'Substance Safety',
     desc: 'Understand safe use, set/setting, and what’s real.',
     image: '/images/ss.png',
-    href: '/psychedelics',
-  },
+    href: '/identify',  },
   {
     title: 'Addiction Counselling',
     desc: 'Non-judgemental help with treatment options.',
