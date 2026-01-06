@@ -21,8 +21,7 @@ export default function RiskEstimator() {
     if (!w || !d) return;
     
     const mgPerKg = d / w;
-    const sub = substances[substance];
-    
+    const sub = substances[substance as keyof typeof substances];    
     let risk = '';
     let color = '';
     
