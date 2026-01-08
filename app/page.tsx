@@ -18,8 +18,7 @@ export default function HomePage() {
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3">
           <Link href="/" className="flex items-center gap-3">
             <img
-              src="/images/reccheck-logo.png"
-              alt="RecCheck"
+src="/images/reccheck-logo.jpg"              alt="RecCheck"
               className="h-9 w-9 rounded-md"
             />
             <div className="leading-tight">
