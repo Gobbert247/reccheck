@@ -12,8 +12,7 @@ const quickLinks = [
 
 export default function HomePage() {
   return (
-    <main className="rc-rc-shellclassName="rounded-2xl border border-white/10 bg-black/  className="rc-card rc-card-hover  min-h-screen text-zinc-100">
-      {/* Top Bar */}
+      <main className="rc-shell min-h-screen text-zinc-100">      {/* Top Bar */}
       <header className="sticky top-0 z-50 border-b border-white/10 bg-black/40 backdrop-blur">
         <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-4 py-3">
           <Link href="/" className="flex items-center gap-3">
