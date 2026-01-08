@@ -27,6 +27,68 @@ body {
   animation: fadeup 5s linear infinite;
 }
 
+/* ===== RecCheck background system ===== */
+:root {
+  --rc-bg: #050508;
+  --rc-card: rgba(0, 0, 0, 0.38);
+  --rc-border: rgba(255, 255, 255, 0.11);
+  --rc-accent-a: rgba(160, 90, 255, 0.18); /* purple */
+  --rc-accent-b: rgba(0, 210, 255, 0.12); /* cyan */
+}
+
+.rc-shell {
+  position: relative;
+  min-height: 100vh;
+  background: var(--rc-bg);
+  color: rgba(244, 244, 245, 0.92);
+  overflow: hidden;
+}
+
+.rc-shell::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  pointer-events: none;
+  background-image:
+    radial-gradient(900px 600px at 10% 15%, var(--rc-accent-a), transparent 58%),
+    radial-gradient(800px 560px at 86% 22%, var(--rc-accent-b), transparent 62%),
+    url("/images/backgrounds/rc-bloom-bg-1920x1080.png"),
+    url("/images/backgrounds/rc-paraphernalia-overlay-1920x1080.png");
+  background-size: cover, cover, cover, cover;
+  background-position: center, center, center, center;
+  background-repeat: no-repeat, no-repeat, no-repeat, no-repeat;
+  opacity: 1;
+}
+
+.rc-shell::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  pointer-events: none;
+  background-image: url("/images/backgrounds/rc-grain-tile.png");
+  background-size: 512px 512px;
+  opacity: 0.12;
+  mix-blend-mode: overlay;
+}
+
+.rc-card {
+  background: var(--rc-card);
+  border: 1px solid var(--rc-border);
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+}
+
+.rc-card-hover {
+  transition: transform 140ms ease, background 140ms ease, border-color 140ms ease;
+}
+
+.rc-card-hover:hover {
+  transform: translateY(-1px);
+  border-color: rgba(255, 255, 255, 0.18);
+  background: rgba(0, 0, 0, 0.52);
+}
+
+
 
 /* Subtle particulate/texture background for RecCheck */
 .rc-texture {
