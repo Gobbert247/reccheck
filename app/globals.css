@@ -127,3 +127,39 @@ body {
     radial-gradient(1px 1px at 80% 40%, rgba(255, 255, 255, 0.07), transparent 55%);
   background-repeat: no-repeat;
 }
+
+
+/* Typography + rhythm (ChatGPT design system) */
+.rc-h1 {
+  font-size: 2rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+@media (min-width: 640px) {
+  .rc-h1 {
+    font-size: 2.5rem;
+  }
+}
+
+.rc-lead {
+  color: rgba(244, 244, 245, 0.72);
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 52ch;
+}
+
+.rc-section {
+  margin-top: 2rem;
+}
+
+.rc-grid {
+  display: grid;
+  gap: 0.75rem;
+}
+
+@media (min-width: 768px) {
+  .rc-grid {
+    gap: 1rem;
+  }
+}
