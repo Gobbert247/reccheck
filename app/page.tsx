@@ -3,7 +3,6 @@ import PageHero from "@/components/PageHero";
 import FeatureTile from "@/components/FeatureTile";
 
 export default function HomePage() {
-  const HERO = "/images/hero/futuristicharmreductiontechsetup.png";
   const TILE = {
     checker: "/images/tiles/magnifyingfocusonacapsule.png",
     alerts: "/images/tiles/warninginhandwithglowingpills.png",
@@ -19,7 +18,7 @@ export default function HomePage() {
         eyebrow="RecCheck • Australia"
         title="Know what you're taking. Reduce risk. Help your mates."
         subtitle="Clear tools for interaction risk, verified alerts, first-aid escalation, and services — designed for real-world use."
-        imageSrc={HERO}
+        imageSrc=""
         actions={[
           { label: "Start a check", href: "/checker", variant: "primary" },
           { label: "View alerts", href: "/alerts", variant: "secondary" },
