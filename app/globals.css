@@ -2,13 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Optional: custom styles */
-body {
-  background-color: #000;
-  color: white;
-  font-family: sans-serif;
+:root {
+  --rc-bg-bloom: url("/images/backgrounds/rc-bloom-bg-1920x1080.png");
+  --rc-bg-overlay: url("/images/backgrounds/rc-paraphernalia-overlay-1920x1080.png");
+  --rc-bg-grain: url("/images/backgrounds/rc-grain-tile.png");
 }
 
+html, body { height: 100%; }
+
+
+body {
+  background-color: #06060a;
+  background-image: var(--rc-bg-overlay), var(--rc-bg-bloom), var(--rc-bg-grain);
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-position: center top, center top, center top;
+  background-size: cover, cover, 420px 420px;
+  background-attachment: fixed, fixed, fixed;
+}
 @keyframes fadeup {
   0% {
     transform: translateY(100%);
