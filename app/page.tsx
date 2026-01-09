@@ -11,7 +11,7 @@ export default function HomePage() {
         eyebrow="RecCheck • Australia"
         title="Clinical harm reduction tools, built for real-world use."
         subtitle="Check interactions, view verified alerts, and access practical resources — written in a calm, public-health tone."
-        imageSrc="/images/molecule.jpg"
+        imageSrc="/molecule.jpg"
         actions={[
           { label: "Start interaction check", href: "/checker", variant: "primary" },
           { label: "View regional alerts", href: "/alerts", variant: "secondary" },
@@ -27,7 +27,7 @@ export default function HomePage() {
           </div>
           <div className="mt-4 relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5">
             <Image
-              src="/images/phone-mockup.png"
+              src="/phone-mockup.png"
               alt="RecCheck preview"
               fill
               priority
@@ -59,21 +59,21 @@ export default function HomePage() {
               title="Interaction Checker"
               description="Identify risky combinations and compounding effects."
               href="/checker"
-              imageSrc="/images/molecule.jpg"
+              imageSrc="/molecule.jpg"
               badge="Core"
             />
             <FeatureTile
               title="Regional Alerts"
               description="Verified alerts by region, built for fast scanning."
               href="/alerts"
-              imageSrc="/images/vials.jpg"
+              imageSrc="/vials.jpg"
               badge="Verified"
             />
             <FeatureTile
               title="Identify"
               description="Neutral recognition cues and safer decision prompts."
               href="/identify"
-              imageSrc="/images/smoke.jpg"
+              imageSrc="/smoke.jpg"
               badge="Guide"
             />
           </div>
@@ -88,21 +88,21 @@ export default function HomePage() {
               title="First Aid"
               description="Clear steps for emergencies and when to call 000."
               href="/first-aid"
-              imageSrc="/images/candles.jpg"
+              imageSrc="/candles.jpg"
               badge="Safety"
             />
             <FeatureTile
               title="Resources"
               description="Services, education, and public-health aligned information."
               href="/resources"
-              imageSrc="/images/chains.jpg"
-              badge="Public health"
+              imageSrc="/chains.jpg"
+              badge="Public Health"
             />
             <FeatureTile
               title="About"
               description="Design principles, scope, and clinical intent."
               href="/resources#about"
-              imageSrc="/images/molecule.jpg"
+              imageSrc="/molecule.jpg"
               badge="Transparency"
             />
           </div>
