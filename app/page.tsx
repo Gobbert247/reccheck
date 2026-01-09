@@ -20,40 +20,40 @@ export default function HomePage() {
       >
         <div className="mt-6 rc-card rc-card-hover p-5">
           <div className="rc-cardHeader">
-            <h3 className="rc-cardTitle">Designed for mobile</h3>
-            <p className="rc-cardSub">Readable, fast, and neutral — no fear-based messaging.</p>
+            <h3 className="rc-cardTitle">Quick access</h3>
+            <p className="rc-cardSub">
+              Built for fast decisions on a phone. Clear layout, strong contrast, no fluff.
+            </p>
           </div>
-          <div className="mt-4 relative aspect-[9/16] w-full max-w-[360px] overflow-hidden rounded-2xl border border-white/10 bg-white/5">
+          <div className="mt-4 relative aspect-[16/10] w-full overflow-hidden rounded-2xl border border-white/10 bg-white/5">
             <Image
               src="/images/phone-mockup.png"
               alt="RecCheck preview"
               fill
               priority
-              className="object-cover opacity-95"
+              className="object-cover"
             />
             <div
-              className="absolute inset-0"
+              className="absolute inset-0 pointer-events-none"
               style={{
                 background:
-                  "radial-gradient(420px 320px at 30% 18%, rgba(160, 90, 255, 0.20), transparent 60%), radial-gradient(460px 360px at 70% 22%, rgba(34, 211, 238, 0.12), transparent 60%)",
+                  "radial-gradient(520px 320px at 30% 18%, rgba(160, 90, 255, 0.18), transparent 60%), radial-gradient(520px 360px at 70% 22%, rgba(34, 211, 238, 0.10), transparent 60%)",
                 mixBlendMode: "screen",
                 opacity: 0.9,
               }}
             />
           </div>
           <p className="mt-4 rc-disclaimer">
-            If someone is unconscious, seizing, or not breathing: call <strong>000</strong>.
-            <Link href="/first-aid" className="rc-link">
-              First aid guidance →
-            </Link>
+            Not medical advice. If someone is unconscious, seizing, or not breathing: call <strong>000</strong>.
           </p>
         </div>
       </PageHero>
-
       <div className="rc-container rc-page">
         <section className="rc-section">
           <h2 className="rc-h2">Core tools</h2>
-          <p className="rc-muted">Practical, evidence-aligned features. Designed for clarity and trust.</p>
+          <p className="rc-muted">
+            Practical, evidence-aligned features. Designed for clarity and trust.
+          </p>
           <div className="rc-grid3" style={{ marginTop: "1rem" }}>
             <FeatureTile
               title="Interaction Checker"
@@ -78,10 +78,11 @@ export default function HomePage() {
             />
           </div>
         </section>
-
         <section className="rc-section">
           <h2 className="rc-h2">Support and safety</h2>
-          <p className="rc-muted">Calm guidance, escalation advice, and pathways to help.</p>
+          <p className="rc-muted">
+            Calm guidance, escalation advice, and pathways to help.
+          </p>
           <div className="rc-grid3" style={{ marginTop: "1rem" }}>
             <FeatureTile
               title="First Aid"
