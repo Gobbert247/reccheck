@@ -48,13 +48,15 @@ export default function PageHero({
             <div className="rc-heroActions">
               {actions.map((a, idx) => {
                 if (React.isValidElement(a)) return <div key={idx}>{a}</div>;
+                // Type guard: at this point, a must be the object type
+                const action = a as { label: string; href: string; variant?: "primary" | "secondary" };
                 const cls =
-                  (a.variant ?? "secondary") === "primary"
+                  (action.variant ?? "secondary") === "primary"
                     ? "rc-btn rc-btn-primary"
                     : "rc-btn rc-btn-secondary";
                 return (
-                  <Link key={idx} href={a.href} className={cls}>
-                    {a.label}
+                  <Link key={idx} href={action.href} className={cls}>
+                    {action.label}
                   </Link>
                 );
               })}
