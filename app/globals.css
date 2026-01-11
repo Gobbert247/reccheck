@@ -56,16 +56,28 @@ body::after {
   margin: 0 auto;
 }
 
-.rc-page { padding: 2rem 0 4rem; }
+.rc-page {
+    padding-top: 1.25rem; /* prevents the next section from hiding under hero */padding: 2rem 0 4rem; }
 .rc-section { padding: 2rem 0; }
 
 /* --- Hero (critical layering contract) --- */
 .rc-hero {
   position: relative;
-  padding: 4.5rem 0 2.25rem;
   overflow: hidden;
+  /* CRITICAL: cap hero height */
+  min-height: 56vh;
+  max-height: 70vh;
+  /* reduce top padding so nav/content never gets pushed */
+  padding: 3.25rem 0 1.75rem;
 }
 
+@media (max-width: 640px) {
+  .rc-hero {
+    min-height: 52vh;
+    max-height: 66vh;
+    padding: 2.75rem 0 1.25rem;
+  }
+}
 .rc-heroMedia {
   position: absolute;
   inset: 0;
@@ -75,8 +87,7 @@ body::after {
 
 .rc-heroImg {
   object-fit: cover;
-  transform: scale(1.03);
-  filter: saturate(1.05) contrast(1.05);
+  object-position: center;
 }
 
 .rc-heroScrim {
@@ -234,4 +245,17 @@ body::after {
 
 .rc-btn-primary:hover {
   background: linear-gradient(90deg, rgba(110, 70, 255, 0.65), rgba(40, 220, 255, 0.45));
+}
+
+/* Nav must always sit above hero media */
+header, nav {
+  position: relative;
+  z-index: 50; /* always above hero media */
+}
+
+/* If nav is sticky/fixed */
+.rc-nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
 }
