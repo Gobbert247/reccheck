@@ -7,17 +7,17 @@ type Action =
   | React.ReactNode;
 
 export default function PageHero({
+  eyebrow,
   title,
   subtitle,
-  eyebrow,
   imageSrc,
   imageAlt = "",
   actions,
   children,
 }: {
+  eyebrow?: string;
   title: string;
   subtitle?: string;
-  eyebrow?: string;
   imageSrc: string;
   imageAlt?: string;
   actions?: Action[];
@@ -25,19 +25,21 @@ export default function PageHero({
 }) {
   return (
     <section className="rc-hero">
+      {/* Media layer (always behind) */}
       <div className="rc-heroMedia" aria-hidden="true">
         <Image
           src={imageSrc}
           alt={imageAlt}
           fill
           priority
-          className="rc-heroImg"
+          className="rc-heroImg"  
           sizes="100vw"
         />
         <div className="rc-heroScrim" />
         <div className="rc-heroGlow" />
       </div>
 
+      {/* Content layer (always above) */}
       <div className="rc-container rc-heroContent">
         <div className="rc-heroInner">
           {eyebrow ? <p className="rc-eyebrow">{eyebrow}</p> : null}
@@ -48,15 +50,13 @@ export default function PageHero({
             <div className="rc-heroActions">
               {actions.map((a, idx) => {
                 if (React.isValidElement(a)) return <div key={idx}>{a}</div>;
-                // Type guard: at this point, a must be the object type
-                const action = a as { label: string; href: string; variant?: "primary" | "secondary" };
                 const cls =
-                  (action.variant ?? "secondary") === "primary"
+                  (a.variant ?? "secondary") === "primary"
                     ? "rc-btn rc-btn-primary"
                     : "rc-btn rc-btn-secondary";
                 return (
-                  <Link key={idx} href={action.href} className={cls}>
-                    {action.label}
+                  <Link key={idx} href={a.href} className={cls}>
+                    {a.label}
                   </Link>
                 );
               })}
