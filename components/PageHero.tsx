@@ -50,6 +50,8 @@ export default function PageHero({
             <div className="rc-heroActions">
               {actions.map((a, idx) => {
                 if (React.isValidElement(a)) return <div key={idx}>{a}</div>;
+                // Type guard: ensure 'a' is the object type
+                if (typeof a !== 'object' || a === null || !('label' in a)) return null;
                 const cls =
                   (a.variant ?? "secondary") === "primary"
                     ? "rc-btn rc-btn-primary"
