@@ -18,7 +18,7 @@ export default function PageHero({
   eyebrow?: string;
   title: string;
   subtitle?: string;
-  imageSrc: string;
+  imageSrc?: string;
   imageAlt?: string;
   actions?: Action[];
   children?: React.ReactNode;
