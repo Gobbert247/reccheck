@@ -26,7 +26,8 @@ export default function PageHero({
   return (
     <section className="rc-hero">
       {/* Media layer (always behind) */}
-      <div className="rc-heroMedia" aria-hidden="true">
+{imageSrc && (
+  <div className="rc-heroMedia" aria-hidden="true">
         <Image
           src={imageSrc}
           alt={imageAlt}
@@ -38,6 +39,7 @@ export default function PageHero({
         <div className="rc-heroScrim" />
         <div className="rc-heroGlow" />
       </div>
+  )}
 
       {/* Content layer (always above) */}
       <div className="rc-container rc-heroContent">
