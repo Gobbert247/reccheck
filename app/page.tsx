@@ -5,7 +5,6 @@ import Link from "next/link";
 
 export default function HomePage() {
   // HERO: balance scale with pills (exists in /images/tiles/)
-  const HERO = "/images/tiles/measuringmedicationriskandbalance.png";
 
   // Tiles: use EXACT filenames from /cpp/public/images/tiles/
   const TILE = {
@@ -23,8 +22,6 @@ export default function HomePage() {
         eyebrow="RecCheck • Australia"
         title="Know what you're taking. Reduce risk. Help your mates."
         subtitle="Clear tools for interaction risk, verified alerts, first-aid escalation, and services — designed for real-world use."
-        imageSrc={HERO}
-        imageAlt="Balance scale with pills representing measured risk"
         actions={[
           { label: "Start a check", href: "/checker", variant: "primary" },
           { label: "View alerts", href: "/alerts", variant: "secondary" },
